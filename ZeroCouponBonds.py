@@ -14,5 +14,5 @@ class ZeroCouponBonds:
 
 if __name__ =='__main__':
     bond = ZeroCouponBonds(1000,2,4)
-    print(bond.calculate_price())
+    print("Price of bond in dollar : %.2f" % bond.calculate_price())
      
