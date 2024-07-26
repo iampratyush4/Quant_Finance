@@ -35,7 +35,6 @@ def show_data(data):
     data.plot(figsize=(10,5))
     plt.show()
 
-
 def calc_return(data):
     log_return= np.log(data/data.shift(1))
     return log_return[1:]
@@ -43,12 +42,28 @@ def calc_return(data):
 def show_stats(returns):
     print("mean", returns.mean()*total_trading_Days)
     print("covarianvce",returns.cov()*total_trading_Days)
+
+def show_mean_variance(returns,weights):
+    portfolio_return= np.sum(returns.mean()*weights)*total_trading_Days
+    portfolio_volatility=np.sqrt(np.dot(weights.T,np.dot(returns.cov()*total_trading_Days,weights)))
+    print("expected portfolio mean(return):", portfolio_return)
+    print("expected portfolio volatility(standard deviation):",portfolio_volatility)
+def generate_portfolio(returns):
+    port_means=[]
+    port_risks=[]
+    port_weights=[]
+
     
 if __name__=='__main__':
+    weights=[0.2,0.2,0.3,0.15,0.15]
     dataset=download_data()
     print(dataset)
     returns=calc_return(dataset)
     print(returns)
-    show_stats(returns)
+    stats=show_stats(returns)
+    print(stats)
     show_data(dataset)
+    show_mean_variance(returns,weights)
+
+
 
