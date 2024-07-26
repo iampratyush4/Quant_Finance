@@ -54,6 +54,8 @@ def generate_portfolio(returns):
     port_weights=[]
 
     for _ in range(num_portfolios):
+        w= np.random(len(stocks))
+        w/=np.sum(w)
 
     
 if __name__=='__main__':
