@@ -19,6 +19,8 @@ import scipy.optimize as optimization
 # stocks to hanle
 stocks =['AAPL','WMT','TSLA','GE','AMZN','DB']
 total_trading_Days=252
+NUM_PORTFOLIOS=10000
+
 
 start_date='2012-01-01'
 end_date='2017-01-01'
@@ -48,27 +50,43 @@ def show_mean_variance(returns,weights):
     portfolio_volatility=np.sqrt(np.dot(weights.T,np.dot(returns.cov()*total_trading_Days,weights)))
     print("expected portfolio mean(return):", portfolio_return)
     print("expected portfolio volatility(standard deviation):",portfolio_volatility)
-def generate_portfolio(returns):
-    port_means=[]
-    port_risks=[]
-    port_weights=[]
 
-    for _ in range(num_portfolios):
-        w= np.random(len(stocks))
-        w/=np.sum(w)
-        port_weights.append(w)
+def show_portfolios(returns, volatilities):
+    plt.figure(figsize=(10, 6))
+    plt.scatter(volatilities, returns, c=returns / volatilities, marker='o')
+    plt.grid(True)
+    plt.xlabel('Expected Volatility')
+    plt.ylabel('Expected Return')
+    plt.colorbar(label='Sharpe Ratio')
+    plt.show()
 
+
+def generate_portfolios(returns):
+    portfolio_means = []
+    portfolio_risks = []
+    portfolio_weights = []
+
+    for _ in range(NUM_PORTFOLIOS):
+        w = np.random.random(len(stocks))
+        w /= np.sum(w)
+        portfolio_weights.append(w)
+        portfolio_means.append(np.sum(returns.mean() * w) * total_trading_Days)
+        portfolio_risks.append(np.sqrt(np.dot(w.T, np.dot(returns.cov()
+                                                          * total_trading_Days, w))))
+
+    return np.array(portfolio_weights), np.array(portfolio_means), np.array(portfolio_risks)
+        
     
 if __name__=='__main__':
-    weights=[0.2,0.2,0.3,0.15,0.15]
-    dataset=download_data()
-    print(dataset)
-    returns=calc_return(dataset)
-    print(returns)
-    stats=show_stats(returns)
-    print(stats)
-    show_data(dataset)
-    show_mean_variance(returns,weights)
+      
+        dataset = download_data()
+
+        show_data(dataset)
+        log_daily_returns = calc_return(dataset)
+        # show_statistics(log_daily_returns)
+
+        pweights, means, risks = generate_portfolios(log_daily_returns)
+        show_portfolios(means, risks)
 
 
 
