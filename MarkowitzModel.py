@@ -53,6 +53,8 @@ def generate_portfolio(returns):
     port_risks=[]
     port_weights=[]
 
+    for _ in range(num_portfolios):
+
     
 if __name__=='__main__':
     weights=[0.2,0.2,0.3,0.15,0.15]
