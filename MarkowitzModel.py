@@ -72,7 +72,7 @@ def show_mean_variance(returns, weights):
 
 def show_portfolios(returns, volatilities):
     plt.figure(figsize=(10, 6))
-    plt.scatter(volatilities, returns, c=returns / volatilities, marker='o')
+    plt.scatter(volatilities, returns, c=returns / volatilities,cmap='inferno', marker='o')
     plt.grid(True)
     plt.xlabel('Expected Volatility')
     plt.ylabel('Expected Return')
@@ -129,7 +129,7 @@ def print_optimal_portfolio(optimum, returns):
 
 def show_optimal_portfolio(opt, rets, portfolio_rets, portfolio_vols):
     plt.figure(figsize=(10, 6))
-    plt.scatter(portfolio_vols, portfolio_rets, c=portfolio_rets / portfolio_vols, marker='o')
+    plt.scatter(portfolio_vols, portfolio_rets, c=portfolio_rets / portfolio_vols, cmap='magma',marker='o')
     plt.grid(True)
     plt.xlabel('Expected Volatility')
     plt.ylabel('Expected Return')
