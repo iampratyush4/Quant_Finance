@@ -31,3 +31,4 @@ if __name__ == "__main__":
     stock = download_data('IBM', '2010-01-01', '2020-01-01')
     log_daily_returns = calculate_returns(stock)
     show_plot(log_daily_returns)
+# IT WILL GIVE NORMALISED RETURNS 
