@@ -3,7 +3,7 @@ import pandas as pd
 import yfinance as yf
 import matplotlib.pyplot as plt
 
-# market interest rate
+# market interest rates
 RISK_FREE_RATE = 0.05
 # we will consider monthly returns - and we want to calculate the annual returns
 MONTHS_IN_YEAR = 12
