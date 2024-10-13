@@ -1,8 +1,8 @@
-# monte carlo simulation 
+# Monte carlo simulation 
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Parameters
+# Parameters 
 S0 = 100         # Initial stock price
 mu = 0.05        # Expected return (annualized)
 sigma = 0.2      # Volatility (annualized)
@@ -20,7 +20,7 @@ S[0] = S0  # Initial stock price
 # Generate random numbers from a normal distribution for each simulation
 Z = np.random.normal(0, 1, (N, simulations))
 
-# Simulate the stock price path
+# Simulate the stock price paths
 for t in range(1, N + 1):
     S[t] = S[t - 1] * np.exp((mu - 0.5 * sigma ** 2) * dt + sigma * np.sqrt(dt) * Z[t - 1])
 
