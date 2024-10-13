@@ -13,7 +13,7 @@ simulations = 10000  # Number of simulations
 # Time step size
 dt = T / N
 
-# Simulating stock prices
+# Simulating stock price
 S = np.zeros((N + 1, simulations))
 S[0] = S0  # Initial stock price
 
