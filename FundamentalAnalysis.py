@@ -21,10 +21,13 @@ def fetch_stock_data(stock_ticker):
     print("\nRecent Financials (Revenue):")
     print(financials.loc['Total Revenue'])
     
-    # Quarterly earnings data
-    earnings = stock.earnings
-    print("\nAnnual Earnings:")
-    print(earnings)
+    # Retrieve Net Income from the income statement
+    income_statement = stock.income_stmt
+    if 'Net Income' in income_statement.index:
+        print("\nAnnual Net Income:")
+        print(income_statement.loc['Net Income'])
+    else:
+        print("\nAnnual Net Income data not available.")
 
 # Example usage
-fetch_stock_data('TCS.NS')  # Use 'ticker.NS' for Indian stocks listed on NSE
+fetch_stock_data('TCS.NS')  # For TCS on NSE
